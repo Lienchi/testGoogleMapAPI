@@ -1,0 +1,2 @@
+class GoStation < ApplicationRecord
+end
