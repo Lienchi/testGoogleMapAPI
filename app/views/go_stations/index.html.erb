@@ -66,12 +66,15 @@
     <input type="text" id="start">
     <br>
     <b>Waypoints:</b> <br>
+    <%= select_tag 'waypoints', options_for_select(@gostations.collect{ |u| [u.LocName, u.id] }) %>
+    <!--
     <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br>
     <select multiple id="waypoints">
       <option value="南港車站">南港車站</option>
       <option value="台北車站">台北車站</option>
       <option value="板橋車站">板橋車站</option>
     </select>
+    -->
     <br>
     <b>End:</b>
      <input type="text" id="end">
