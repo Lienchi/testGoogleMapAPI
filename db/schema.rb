@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180309180300) do
+ActiveRecord::Schema.define(version: 20180309181019) do
 
   create_table "go_stations", force: :cascade do |t|
     t.string "LocName"
-    t.float "latitude"
-    t.float "longitude"
+    t.decimal "latitude"
+    t.decimal "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
