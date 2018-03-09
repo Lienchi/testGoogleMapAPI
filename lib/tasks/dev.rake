@@ -10,8 +10,8 @@ namespace :dev do
     json['data'].each do |data|
       GoStation.create!(
         LocName: data['LocName'],
-        latitude: data['Latitude'],
-        longitude: data['Longitude']
+        latitude: data['Latitude'].to_s,
+        longitude: data['Longitude'].to_s
       )
     end
     puts "have created gostations!"
