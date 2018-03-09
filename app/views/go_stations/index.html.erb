@@ -1,1 +1,35 @@
-<h1>Index</h1>
+<!DOCTYPE html>
+<script>
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 40.689104, lng: -74.044599},
+      zoom: 16
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB46ur3U5wn-0frVxY6_SewlfUJzDvHgWw&callback=initMap"
+async defer></script>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Hero project</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Contrail One">
+</head>
+<body>
+  <h1>Index</h1>
+  <div id="map"></div>
+
+<iframe 
+      width="600" 
+      height="450" 
+      frameborder="0" 
+      style="border:0" 
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB46ur3U5wn-0frVxY6_SewlfUJzDvHgWw&q=高雄市政府" 
+      allowfullscreen>
+  </iframe>
+
+
+
+</body>
+</html>
