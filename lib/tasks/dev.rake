@@ -1,3 +1,14 @@
+def find_zh_TW(name_list)
+  loc_name = 'Unknown'
+  name_list['List'].each do |data|
+    if data['Lang'] == 'zh-TW'
+      loc_name = data['Value']
+    end
+  end
+
+  return loc_name
+end
+
 namespace :dev do
   task parse_go_station_list: :environment do
     GoStation.destroy_all
@@ -8,8 +19,10 @@ namespace :dev do
     json = JSON.parse(response)
 
     json['data'].each do |data|
+      name_list = JSON.parse(data['LocName'])
+      name_zh_tw = find_zh_TW(name_list)
       GoStation.create!(
-        LocName: data['LocName'],
+        LocName: name_zh_tw,
         latitude: data['Latitude'].to_s,
         longitude: data['Longitude'].to_s
       )
