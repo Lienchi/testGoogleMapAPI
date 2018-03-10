@@ -1,6 +1,6 @@
-def find_zh_TW(name_list)
+def find_zh_TW(list)
   loc_name = 'Unknown'
-  name_list['List'].each do |data|
+  list['List'].each do |data|
     if data['Lang'] == 'zh-TW'
       loc_name = data['Value']
     end
@@ -21,10 +21,14 @@ namespace :dev do
     json['data'].each do |data|
       name_list = JSON.parse(data['LocName'])
       name_zh_tw = find_zh_TW(name_list)
+
+      address_list = JSON.parse(data['Address'])
+      address_zh_tw = find_zh_TW(address_list)
       GoStation.create!(
         LocName: name_zh_tw,
         latitude: data['Latitude'].to_s,
-        longitude: data['Longitude'].to_s
+        longitude: data['Longitude'].to_s,
+        Address: address_zh_tw
       )
     end
     puts "have created gostations!"
