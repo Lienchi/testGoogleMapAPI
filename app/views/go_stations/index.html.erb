@@ -117,18 +117,18 @@
           record_end = record_end.results;
 
           //跑迴圈依序將值塞入到 marker
-          for(i=0; i<record.length; i++){
+          for(var i=0; i<record.length; i++){
             var position = {};
             position.lat = parseFloat(record[i]['Latitude']);
             position.lng = parseFloat(record[i]['Longitude']);
 
             if( checkLatLngInStartEnd(position, record_start[0].geometry.location, record_end[0].geometry.location) ){
-              //var LocNameList = JSON.parse(record[i]['LocName']);
-              var LocName = 'test';//find_zh_tw_val(LocNameList);
+              var LocNameList = JSON.parse(record[i]['LocName']);
+              var LocName = find_zh_tw_val(LocNameList);
               addMarker({
                 coords: position,
                 iconImage: 'http://maps.google.com/mapfiles/ms/micons/yellow-dot.png',
-                content: LocName
+                content: '<a href="https://www.google.com/maps/dir/Current+Location/'+LocName+'" target="_blank">'+LocName+'</a>'
               });
             }
             
@@ -138,7 +138,7 @@
 
       function find_zh_tw_val(LocNameList){
         var LocName = 'Unknown';
-        for(i=0; i<LocNameList['List'].length; i++){
+        for(var i=0; i<LocNameList['List'].length; i++){
           if(LocNameList['List'][i]['Lang'] == 'zh-TW'){
             LocName = LocNameList['List'][i]['Value'];
             return LocName;
@@ -156,6 +156,7 @@
         return false;
       }
 
+      var infoWindow = null;
       function addMarker(props){
         var marker = new google.maps.Marker({
           position: props.coords,
@@ -164,12 +165,12 @@
         });
 
         if(props.content){
-          var infoWindow = new google.maps.InfoWindow({
-            content: props.content
-          });
-
           marker.addListener('click', function(){
-            infoWindow.open(map, marker)
+            if(infoWindow==null){
+              infoWindow = new google.maps.InfoWindow();
+            }
+            infoWindow.setContent(props.content);
+            infoWindow.open(map, marker);
           });
         }
       }
